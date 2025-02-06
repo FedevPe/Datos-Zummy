@@ -30,6 +30,7 @@ namespace DatosZummy
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             pnlTop = new Panel();
             btnCloseConnection = new IconButton();
@@ -37,6 +38,8 @@ namespace DatosZummy
             imgZummy = new PictureBox();
             pnlShadowTop = new Panel();
             pnlMain = new Panel();
+            shadowMainForm = new Guna.UI2.WinForms.Guna2ShadowForm(components);
+            elipseMainForm = new Guna.UI2.WinForms.Guna2Elipse(components);
             pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgZummy).BeginInit();
             SuspendLayout();
@@ -53,7 +56,7 @@ namespace DatosZummy
             pnlTop.Size = new Size(1006, 98);
             pnlTop.TabIndex = 0;
             // 
-            // bntCloseConnection
+            // btnCloseConnection
             // 
             btnCloseConnection.FlatAppearance.BorderSize = 0;
             btnCloseConnection.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -63,7 +66,7 @@ namespace DatosZummy
             btnCloseConnection.IconFont = IconFont.Auto;
             btnCloseConnection.IconSize = 27;
             btnCloseConnection.Location = new Point(865, 29);
-            btnCloseConnection.Name = "bntCloseConnection";
+            btnCloseConnection.Name = "btnCloseConnection";
             btnCloseConnection.Size = new Size(129, 35);
             btnCloseConnection.TabIndex = 3;
             btnCloseConnection.Text = "Salir";
@@ -71,7 +74,7 @@ namespace DatosZummy
             btnCloseConnection.UseVisualStyleBackColor = true;
             btnCloseConnection.Visible = false;
             // 
-            // bntStartConnection
+            // btnStartConnection
             // 
             btnStartConnection.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnStartConnection.ForeColor = Color.FromArgb(0, 164, 66);
@@ -80,7 +83,7 @@ namespace DatosZummy
             btnStartConnection.IconFont = IconFont.Auto;
             btnStartConnection.IconSize = 27;
             btnStartConnection.Location = new Point(865, 30);
-            btnStartConnection.Name = "bntStartConnection";
+            btnStartConnection.Name = "btnStartConnection";
             btnStartConnection.Size = new Size(129, 35);
             btnStartConnection.TabIndex = 2;
             btnStartConnection.Text = "Conectar";
@@ -117,6 +120,14 @@ namespace DatosZummy
             pnlMain.Size = new Size(1006, 476);
             pnlMain.TabIndex = 2;
             // 
+            // shadowMainForm
+            // 
+            shadowMainForm.TargetForm = this;
+            // 
+            // elipseMainForm
+            // 
+            elipseMainForm.TargetControl = this;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -140,7 +151,9 @@ namespace DatosZummy
         private PictureBox imgZummy;
         private Panel pnlShadowTop;
         private Panel pnlMain;
-        private IconButton btnCloseConnection;
         private IconButton btnStartConnection;
+        private IconButton btnCloseConnection;
+        private Guna.UI2.WinForms.Guna2ShadowForm shadowMainForm;
+        private Guna.UI2.WinForms.Guna2Elipse elipseMainForm;
     }
 }

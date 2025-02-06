@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Runtime.InteropServices;
 using DatosZummy.Class;
 using FluentFTP;
 
@@ -15,42 +7,57 @@ namespace DatosZummy.Forms
     public partial class DataForm : Form
     {
         private ZummyData data = new();
-        private readonly string initialDirectory = "/";
+        private readonly string initialPath = "/";
+        private string currentlyItemSelected;
+        private List<FtpListItem> files;
+        private List<FtpListItem> directories;
 
         public DataForm()
         {
             InitializeComponent();
         }
-
-        private async void BtnSearchData_ClickAsync(object sender, EventArgs e)
+        private async void DataForm_Load(object sender, EventArgs e)
         {
-            /// MEMCARD/TEMP/
-            List<FtpListItem> files = new List<FtpListItem>(await data.GetFilesAsync(initialDirectory));
+            await LoadDirectories(initialPath);
+        }
 
-            TreeNode treeNode = new(initialDirectory);
-            treeNode.Text = initialDirectory;
-            tvData.Nodes.Add(treeNode);
+        private void BtnSearchData_Click(object sender, EventArgs e)
+        {
 
-            foreach (var file in files)
+        }
+        public async Task LoadDirectories(string path)
+        {
+            lvFiles.Items.Clear();
+            try
             {
-                ListViewItem listViewItem = new(file.Name);
-                listViewItem.SubItems.Add(file.Created.ToString());
-                lvFiles.Items.Add(listViewItem);
+                List<FtpListItem> directories = new List<FtpListItem>(await data.GetDirectoriesAsync(path));
+                foreach (var directory in directories)
+                {
+                    lvFiles.Items.Add(directory.Name, 0);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un problema al intentar cargar los archivos.",
+                "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private async void LoadNodeFTP(TreeNode node, string path)
+        public async Task LoadFiles(string path)
         {
-            foreach (var item in await data.GetFilesAsync(path))
+            lvFiles.Items.Clear();
+            try
             {
-                TreeNode childNode = new TreeNode(item.Name);
-                childNode.Tag = item.FullName;
+                List<FtpListItem> files = new List<FtpListItem>(await data.GetFilesAsync(path));
 
-                node.Nodes.Add(childNode);
-
-                if (item.Type == FtpObjectType.Directory)
+                foreach (var file in files)
                 {
-                    LoadNodeFTP(childNode, item.FullName);
+                    lvFiles.Items.Add(file.Name, 1);
                 }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un problema al intentar cargar los archivos.",
+                "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

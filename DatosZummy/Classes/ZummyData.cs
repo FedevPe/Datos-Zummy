@@ -17,7 +17,7 @@ namespace DatosZummy.Class
 
                 foreach (FtpListItem item in await connection.FtpClient.GetListing(path, FtpListOption.Recursive))
                 {
-                    if (item.Type == FtpObjectType.Directory)
+                    if (item.Type == FtpObjectType.File)
                     {
                         ftpFiles.Add(item);
                     }
@@ -34,6 +34,35 @@ namespace DatosZummy.Class
                 connection.DisconnectServerFTP();
             }
             
+        }
+        public async Task<List<FtpListItem>> GetDirectoriesAsync(string path)
+        {
+            List<FtpListItem> ftpDirectories = new List<FtpListItem>();
+            connection = new ServerConnection();
+
+            try
+            {
+                await connection.ConnectAsync();
+
+                foreach (FtpListItem item in await connection.FtpClient.GetListing(path, FtpListOption.Recursive))
+                {
+                    if (item.Type == FtpObjectType.Directory)
+                    {
+                        ftpDirectories.Add(item);
+                    }
+                }
+
+                return ftpDirectories;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.DisconnectServerFTP();
+            }
+
         }
     }
 }

@@ -6,7 +6,7 @@ from pyftpdlib.servers import FTPServer
 authorizer = DummyAuthorizer()
 # Agrega un usuario con permisos de lectura y escritura.
 # Cambia 'user', '12345' y la ruta '/ruta/a/tu/directorio' por los que prefieras.
-authorizer.add_user("CONFIDENTIAL", "", "C:/Users/Usuario/Documents/DatosZummy", perm="elradfmwMT")
+authorizer.add_user("CONFIDENTIAL", "", "C:/Users/Administracion/Documents/DatosZummy", perm="elradfmwMT")
 # Opcionalmente, puedes habilitar un usuario anónimo (lectura, por ejemplo)
 # authorizer.add_anonymous("/ruta/a/tu/directorio", perm="elr")
 
