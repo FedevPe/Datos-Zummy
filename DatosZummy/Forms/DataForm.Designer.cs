@@ -39,6 +39,7 @@
             lvFiles = new ListView();
             nameFile = new ColumnHeader();
             dateFile = new ColumnHeader();
+            tvData = new TreeView();
             pnlDates.SuspendLayout();
             SuspendLayout();
             // 
@@ -58,6 +59,7 @@
             // 
             // btnSearchData
             // 
+            btnSearchData.AutoEllipsis = true;
             btnSearchData.BackColor = SystemColors.Window;
             btnSearchData.FlatAppearance.BorderColor = Color.DarkGray;
             btnSearchData.FlatAppearance.BorderSize = 2;
@@ -142,9 +144,9 @@
             // lvFiles
             // 
             lvFiles.Columns.AddRange(new ColumnHeader[] { nameFile, dateFile });
-            lvFiles.Location = new Point(70, 117);
+            lvFiles.Location = new Point(12, 65);
             lvFiles.Name = "lvFiles";
-            lvFiles.Size = new Size(297, 315);
+            lvFiles.Size = new Size(412, 399);
             lvFiles.TabIndex = 2;
             lvFiles.UseCompatibleStateImageBehavior = false;
             lvFiles.View = View.List;
@@ -157,6 +159,13 @@
             // 
             dateFile.Text = "Fecha";
             // 
+            // trvData
+            // 
+            tvData.Location = new Point(430, 65);
+            tvData.Name = "trvData";
+            tvData.Size = new Size(564, 399);
+            tvData.TabIndex = 3;
+            // 
             // DataForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -164,6 +173,7 @@
             BackColor = Color.White;
             ClientSize = new Size(1006, 476);
             ControlBox = false;
+            Controls.Add(tvData);
             Controls.Add(lvFiles);
             Controls.Add(pnlDates);
             Controls.Add(pnlShadow);
@@ -191,5 +201,6 @@
         private ListView lvFiles;
         private ColumnHeader nameFile;
         private ColumnHeader dateFile;
+        private TreeView tvData;
     }
 }

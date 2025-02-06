@@ -17,7 +17,7 @@ namespace DatosZummy.Class
 
                 foreach (FtpListItem item in await connection.FtpClient.GetListing(path, FtpListOption.Recursive))
                 {
-                    if (item.Type == FtpObjectType.File)
+                    if (item.Type == FtpObjectType.Directory)
                     {
                         ftpFiles.Add(item);
                     }

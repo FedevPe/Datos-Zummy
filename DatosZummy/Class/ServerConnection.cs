@@ -14,7 +14,8 @@ namespace DatosZummy.Class
             {
                 var token = new CancellationToken();
 
-                FtpClient.Host = "192.168.1.7";
+                FtpClient.Host = "127.0.0.1";
+                FtpClient.Port = 2121;
                 FtpClient.Credentials = new NetworkCredential("CONFIDENTIAL", "");
 
                 await FtpClient.Connect(token);
