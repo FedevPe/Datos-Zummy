@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using DatosZummy.Class;
+﻿using DatosZummy.Classes;
 using FluentFTP;
 
 namespace DatosZummy.Forms
@@ -9,8 +8,6 @@ namespace DatosZummy.Forms
         private ZummyData data = new();
         private readonly string initialPath = "/";
         private string currentlyItemSelected;
-        private List<FtpListItem> files;
-        private List<FtpListItem> directories;
 
         public DataForm()
         {
@@ -18,22 +15,33 @@ namespace DatosZummy.Forms
         }
         private async void DataForm_Load(object sender, EventArgs e)
         {
-            await LoadDirectories(initialPath);
+            await LoadFilesAndDirectories(initialPath);
         }
-
-        private void BtnSearchData_Click(object sender, EventArgs e)
+        private async void LvFiles_MouseDoubleClick(object sender, EventArgs e)
         {
+            currentlyItemSelected = lvFiles.SelectedItems[0].Text;
 
+            if (lvFiles.SelectedItems[0].ImageIndex == 0)
+            {
+                await LoadFilesAndDirectories(initialPath + currentlyItemSelected);
+            }
         }
-        public async Task LoadDirectories(string path)
+        public async Task LoadFilesAndDirectories(string path)
         {
             lvFiles.Items.Clear();
             try
             {
-                List<FtpListItem> directories = new List<FtpListItem>(await data.GetDirectoriesAsync(path));
-                foreach (var directory in directories)
+                List<FtpListItem> filesAndDirectories = new List<FtpListItem>(await data.GetListingAsync(path));
+                foreach (var item in filesAndDirectories)
                 {
-                    lvFiles.Items.Add(directory.Name, 0);
+                    if (item.Type == FtpObjectType.Directory)
+                    {
+                        lvFiles.Items.Add("directory", item.Name, 0);
+                    }
+                    else
+                    {
+                        lvFiles.Items.Add("file", item.Name, 1);
+                    }
                 }
             }
             catch (Exception)
@@ -42,23 +50,24 @@ namespace DatosZummy.Forms
                 "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public async Task LoadFiles(string path)
-        {
-            lvFiles.Items.Clear();
-            try
-            {
-                List<FtpListItem> files = new List<FtpListItem>(await data.GetFilesAsync(path));
 
-                foreach (var file in files)
-                {
-                    lvFiles.Items.Add(file.Name, 1);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Ha ocurrido un problema al intentar cargar los archivos.",
-                "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        private void BtnBackAndGo_MouseEnter(object sender, EventArgs e)
+        {
+            FontAwesome.Sharp.IconButton btn = (FontAwesome.Sharp.IconButton)sender;
+            btn.IconColor = Color.FromArgb(0, 164, 96);
+            btn.BackColor = Color.White;
+        }
+        private void BtnBackAndGo_MouseLeave(object sender, EventArgs e)
+        {
+            FontAwesome.Sharp.IconButton btn = (FontAwesome.Sharp.IconButton)sender;
+            btn.IconColor = Color.White;
+            btn.BackColor = Color.FromArgb(0, 164, 96);
+        }
+        private void BtnBackAndGo_MouseHover(object sender, EventArgs e)
+        {
+            FontAwesome.Sharp.IconButton btn = (FontAwesome.Sharp.IconButton)sender;
+            btn.IconColor = Color.FromArgb(0, 164, 96);
+            btn.BackColor = Color.White;
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using FluentFTP;
 
-namespace DatosZummy.Class
+namespace DatosZummy.Classes
 {
     internal class ZummyData
     {
         private ServerConnection connection;
 
-        public async Task<List<FtpListItem>> GetFilesAsync(string path)
+        public async Task<List<FtpListItem>> GetListingAsync(string path)
         {
             List<FtpListItem> ftpFiles = new List<FtpListItem>();
             connection = new ServerConnection();
@@ -15,12 +15,9 @@ namespace DatosZummy.Class
             {
                 await connection.ConnectAsync();
 
-                foreach (FtpListItem item in await connection.FtpClient.GetListing(path, FtpListOption.Recursive))
-                {
-                    if (item.Type == FtpObjectType.File)
-                    {
-                        ftpFiles.Add(item);
-                    }
+                foreach (FtpListItem item in await connection.FtpClient.GetListing(path))
+                {                    
+                    ftpFiles.Add(item);
                 }
 
                 return ftpFiles;
@@ -33,7 +30,6 @@ namespace DatosZummy.Class
             {
                 connection.DisconnectServerFTP();
             }
-            
         }
         public async Task<List<FtpListItem>> GetDirectoriesAsync(string path)
         {
@@ -62,7 +58,6 @@ namespace DatosZummy.Class
             {
                 connection.DisconnectServerFTP();
             }
-
         }
     }
 }

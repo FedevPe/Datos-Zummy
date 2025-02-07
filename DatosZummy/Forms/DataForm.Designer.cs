@@ -36,6 +36,10 @@
             lvFiles = new ListView();
             pnlTop = new Guna.UI2.WinForms.Guna2ShadowPanel();
             pnlBot = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            btnBack = new FontAwesome.Sharp.IconButton();
+            btnGo = new FontAwesome.Sharp.IconButton();
+            bntBackElipse = new Guna.UI2.WinForms.Guna2Elipse(components);
+            btnGoElipse = new Guna.UI2.WinForms.Guna2Elipse(components);
             SuspendLayout();
             // 
             // pnlShadowTop
@@ -53,7 +57,6 @@
             iconDropDownButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconDropDownButton1.Name = "iconDropDownButton1";
             iconDropDownButton1.Size = new Size(23, 23);
-            iconDropDownButton1.Text = "iconDropDownButton1";
             // 
             // iconList
             // 
@@ -70,13 +73,14 @@
             lvFiles.BorderStyle = BorderStyle.None;
             lvFiles.HideSelection = true;
             lvFiles.LargeImageList = iconList;
-            lvFiles.Location = new Point(0, 73);
+            lvFiles.Location = new Point(0, 126);
             lvFiles.Name = "lvFiles";
-            lvFiles.Size = new Size(1006, 330);
+            lvFiles.Size = new Size(1006, 277);
             lvFiles.SmallImageList = iconList;
             lvFiles.Sorting = SortOrder.Ascending;
             lvFiles.TabIndex = 2;
             lvFiles.UseCompatibleStateImageBehavior = false;
+            lvFiles.MouseDoubleClick += LvFiles_MouseDoubleClick;
             // 
             // pnlTop
             // 
@@ -103,6 +107,50 @@
             pnlBot.Size = new Size(1006, 67);
             pnlBot.TabIndex = 0;
             // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.FromArgb(0, 164, 96);
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.IconChar = FontAwesome.Sharp.IconChar.ChevronLeft;
+            btnBack.IconColor = Color.White;
+            btnBack.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnBack.IconSize = 25;
+            btnBack.Location = new Point(12, 73);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(35, 30);
+            btnBack.TabIndex = 4;
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.MouseEnter += BtnBackAndGo_MouseEnter;
+            btnBack.MouseLeave += BtnBackAndGo_MouseLeave;
+            btnBack.MouseHover += BtnBackAndGo_MouseHover;
+            // 
+            // btnGo
+            // 
+            btnGo.BackColor = Color.FromArgb(0, 164, 96);
+            btnGo.FlatAppearance.BorderSize = 0;
+            btnGo.FlatStyle = FlatStyle.Flat;
+            btnGo.IconChar = FontAwesome.Sharp.IconChar.ChevronRight;
+            btnGo.IconColor = Color.White;
+            btnGo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnGo.IconSize = 25;
+            btnGo.Location = new Point(58, 73);
+            btnGo.Name = "btnGo";
+            btnGo.Size = new Size(35, 30);
+            btnGo.TabIndex = 5;
+            btnGo.UseVisualStyleBackColor = false;
+            btnGo.MouseEnter += BtnBackAndGo_MouseEnter;
+            btnGo.MouseLeave += BtnBackAndGo_MouseLeave;
+            btnGo.MouseHover += BtnBackAndGo_MouseHover;
+            // 
+            // bntBackElipse
+            // 
+            bntBackElipse.TargetControl = btnBack;
+            // 
+            // btnGoElipse
+            // 
+            btnGoElipse.TargetControl = btnGo;
+            // 
             // DataForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -110,6 +158,8 @@
             BackColor = Color.White;
             ClientSize = new Size(1006, 476);
             ControlBox = false;
+            Controls.Add(btnGo);
+            Controls.Add(btnBack);
             Controls.Add(pnlBot);
             Controls.Add(pnlTop);
             Controls.Add(lvFiles);
@@ -131,5 +181,9 @@
         private ListView lvFiles;
         private Guna.UI2.WinForms.Guna2ShadowPanel pnlTop;
         private Guna.UI2.WinForms.Guna2ShadowPanel pnlBot;
+        private FontAwesome.Sharp.IconButton btnBack;
+        private FontAwesome.Sharp.IconButton btnGo;
+        private Guna.UI2.WinForms.Guna2Elipse bntBackElipse;
+        private Guna.UI2.WinForms.Guna2Elipse btnGoElipse;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using FluentFTP;
 
-namespace DatosZummy.Class
+namespace DatosZummy.Classes
 {
     internal class ServerConnection
     {

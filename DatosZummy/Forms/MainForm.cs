@@ -1,4 +1,4 @@
-using DatosZummy.Class;
+using DatosZummy.Classes;
 using DatosZummy.Forms;
 
 namespace DatosZummy
