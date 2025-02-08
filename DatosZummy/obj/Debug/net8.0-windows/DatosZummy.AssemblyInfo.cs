@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DatosZummy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b35c672ac3e80f9fa828dffd03a12e579a0c375a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f370e5abeb350189973c34506ca6e1cdecd27ae2")]
 [assembly: System.Reflection.AssemblyProductAttribute("DatosZummy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DatosZummy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

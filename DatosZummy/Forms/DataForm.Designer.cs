@@ -30,6 +30,8 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataForm));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlShadowTop = new Panel();
             iconDropDownButton1 = new FontAwesome.Sharp.IconDropDownButton();
             iconList = new ImageList(components);
@@ -37,9 +39,11 @@
             pnlTop = new Guna.UI2.WinForms.Guna2ShadowPanel();
             pnlBot = new Guna.UI2.WinForms.Guna2ShadowPanel();
             btnBack = new FontAwesome.Sharp.IconButton();
-            btnGo = new FontAwesome.Sharp.IconButton();
+            btnForward = new FontAwesome.Sharp.IconButton();
             bntBackElipse = new Guna.UI2.WinForms.Guna2Elipse(components);
             btnGoElipse = new Guna.UI2.WinForms.Guna2Elipse(components);
+            txtPath = new Guna.UI2.WinForms.Guna2TextBox();
+            iconDropDownButton2 = new FontAwesome.Sharp.IconDropDownButton();
             SuspendLayout();
             // 
             // pnlShadowTop
@@ -71,6 +75,7 @@
             // lvFiles
             // 
             lvFiles.BorderStyle = BorderStyle.None;
+            lvFiles.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lvFiles.HideSelection = true;
             lvFiles.LargeImageList = iconList;
             lvFiles.Location = new Point(0, 126);
@@ -80,6 +85,7 @@
             lvFiles.Sorting = SortOrder.Ascending;
             lvFiles.TabIndex = 2;
             lvFiles.UseCompatibleStateImageBehavior = false;
+            lvFiles.ItemSelectionChanged += LvFiles_ItemSelectionChanged;
             lvFiles.MouseDoubleClick += LvFiles_MouseDoubleClick;
             // 
             // pnlTop
@@ -98,13 +104,12 @@
             // pnlBot
             // 
             pnlBot.BackColor = Color.Gainsboro;
-            pnlBot.Dock = DockStyle.Bottom;
             pnlBot.FillColor = Color.WhiteSmoke;
-            pnlBot.Location = new Point(0, 409);
+            pnlBot.Location = new Point(-11, 409);
             pnlBot.Name = "pnlBot";
             pnlBot.ShadowColor = Color.Black;
             pnlBot.ShadowShift = 2;
-            pnlBot.Size = new Size(1006, 67);
+            pnlBot.Size = new Size(1026, 76);
             pnlBot.TabIndex = 0;
             // 
             // btnBack
@@ -121,27 +126,29 @@
             btnBack.Size = new Size(35, 30);
             btnBack.TabIndex = 4;
             btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             btnBack.MouseEnter += BtnBackAndGo_MouseEnter;
             btnBack.MouseLeave += BtnBackAndGo_MouseLeave;
             btnBack.MouseHover += BtnBackAndGo_MouseHover;
             // 
-            // btnGo
+            // btnForward
             // 
-            btnGo.BackColor = Color.FromArgb(0, 164, 96);
-            btnGo.FlatAppearance.BorderSize = 0;
-            btnGo.FlatStyle = FlatStyle.Flat;
-            btnGo.IconChar = FontAwesome.Sharp.IconChar.ChevronRight;
-            btnGo.IconColor = Color.White;
-            btnGo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnGo.IconSize = 25;
-            btnGo.Location = new Point(58, 73);
-            btnGo.Name = "btnGo";
-            btnGo.Size = new Size(35, 30);
-            btnGo.TabIndex = 5;
-            btnGo.UseVisualStyleBackColor = false;
-            btnGo.MouseEnter += BtnBackAndGo_MouseEnter;
-            btnGo.MouseLeave += BtnBackAndGo_MouseLeave;
-            btnGo.MouseHover += BtnBackAndGo_MouseHover;
+            btnForward.BackColor = Color.FromArgb(0, 164, 96);
+            btnForward.FlatAppearance.BorderSize = 0;
+            btnForward.FlatStyle = FlatStyle.Flat;
+            btnForward.IconChar = FontAwesome.Sharp.IconChar.ChevronRight;
+            btnForward.IconColor = Color.White;
+            btnForward.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnForward.IconSize = 25;
+            btnForward.Location = new Point(58, 73);
+            btnForward.Name = "btnForward";
+            btnForward.Size = new Size(35, 30);
+            btnForward.TabIndex = 5;
+            btnForward.UseVisualStyleBackColor = false;
+            btnForward.Click += btnForward_Click;
+            btnForward.MouseEnter += BtnBackAndGo_MouseEnter;
+            btnForward.MouseLeave += BtnBackAndGo_MouseLeave;
+            btnForward.MouseHover += BtnBackAndGo_MouseHover;
             // 
             // bntBackElipse
             // 
@@ -149,7 +156,41 @@
             // 
             // btnGoElipse
             // 
-            btnGoElipse.TargetControl = btnGo;
+            btnGoElipse.TargetControl = btnForward;
+            // 
+            // txtPath
+            // 
+            txtPath.BorderColor = Color.Gainsboro;
+            txtPath.BorderRadius = 6;
+            txtPath.CustomizableEdges = customizableEdges1;
+            txtPath.DefaultText = "";
+            txtPath.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPath.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPath.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPath.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPath.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPath.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtPath.ForeColor = Color.Black;
+            txtPath.Location = new Point(100, 74);
+            txtPath.Margin = new Padding(4);
+            txtPath.Name = "txtPath";
+            txtPath.PasswordChar = '\0';
+            txtPath.PlaceholderForeColor = Color.Black;
+            txtPath.PlaceholderText = "";
+            txtPath.ReadOnly = true;
+            txtPath.SelectedText = "";
+            txtPath.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtPath.Size = new Size(520, 29);
+            txtPath.TabIndex = 6;
+            // 
+            // iconDropDownButton2
+            // 
+            iconDropDownButton2.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconDropDownButton2.IconColor = Color.Black;
+            iconDropDownButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconDropDownButton2.Name = "iconDropDownButton2";
+            iconDropDownButton2.Size = new Size(23, 23);
+            iconDropDownButton2.Text = "iconDropDownButton2";
             // 
             // DataForm
             // 
@@ -158,7 +199,8 @@
             BackColor = Color.White;
             ClientSize = new Size(1006, 476);
             ControlBox = false;
-            Controls.Add(btnGo);
+            Controls.Add(txtPath);
+            Controls.Add(btnForward);
             Controls.Add(btnBack);
             Controls.Add(pnlBot);
             Controls.Add(pnlTop);
@@ -182,8 +224,10 @@
         private Guna.UI2.WinForms.Guna2ShadowPanel pnlTop;
         private Guna.UI2.WinForms.Guna2ShadowPanel pnlBot;
         private FontAwesome.Sharp.IconButton btnBack;
-        private FontAwesome.Sharp.IconButton btnGo;
+        private FontAwesome.Sharp.IconButton btnForward;
         private Guna.UI2.WinForms.Guna2Elipse bntBackElipse;
         private Guna.UI2.WinForms.Guna2Elipse btnGoElipse;
+        private Guna.UI2.WinForms.Guna2TextBox txtPath;
+        private FontAwesome.Sharp.IconDropDownButton iconDropDownButton2;
     }
 }

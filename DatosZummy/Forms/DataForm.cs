@@ -7,7 +7,9 @@ namespace DatosZummy.Forms
     {
         private ZummyData data = new();
         private readonly string initialPath = "/";
-        private string currentlyItemSelected;
+        private string currentPath;
+        private Stack<string> backStackPath = new Stack<string>();
+        private Stack<string> forwardStackPath = new Stack<string>();
 
         public DataForm()
         {
@@ -16,14 +18,21 @@ namespace DatosZummy.Forms
         private async void DataForm_Load(object sender, EventArgs e)
         {
             await LoadFilesAndDirectories(initialPath);
+            btnBack.Enabled = false;
+            btnForward.Enabled = false;
+            txtPath.Text = initialPath;
+            txtPath.Enabled = false;
         }
         private async void LvFiles_MouseDoubleClick(object sender, EventArgs e)
         {
-            currentlyItemSelected = lvFiles.SelectedItems[0].Text;
-
             if (lvFiles.SelectedItems[0].ImageIndex == 0)
             {
-                await LoadFilesAndDirectories(initialPath + currentlyItemSelected);
+                backStackPath.Push(initialPath);
+                currentPath = initialPath + lvFiles.SelectedItems[0].Text;
+                forwardStackPath.Clear();
+                await LoadFilesAndDirectories(currentPath);
+                EnableNavegationBottons();
+                txtPath.Text = currentPath;
             }
         }
         public async Task LoadFilesAndDirectories(string path)
@@ -50,7 +59,33 @@ namespace DatosZummy.Forms
                 "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        private async void btnBack_Click(object sender, EventArgs e)
+        {
+            if (backStackPath.Count > 0)
+            {
+                forwardStackPath.Push(currentPath);
+                currentPath = backStackPath.Pop();
+                await LoadFilesAndDirectories(currentPath);
+                EnableNavegationBottons();
+                txtPath.Text = currentPath;
+            }
+        }
+        private async void btnForward_Click(object sender, EventArgs e)
+        {
+            if (forwardStackPath.Count > 0)
+            {
+                backStackPath.Push(currentPath);
+                currentPath = forwardStackPath.Pop();
+                await LoadFilesAndDirectories(currentPath);
+                EnableNavegationBottons();
+                txtPath.Text = currentPath;
+            }
+        }
+        private void EnableNavegationBottons()
+        {
+            btnBack.Enabled = backStackPath.Count > 0;
+            btnForward.Enabled = forwardStackPath.Count > 0;
+        }
         private void BtnBackAndGo_MouseEnter(object sender, EventArgs e)
         {
             FontAwesome.Sharp.IconButton btn = (FontAwesome.Sharp.IconButton)sender;
@@ -68,6 +103,11 @@ namespace DatosZummy.Forms
             FontAwesome.Sharp.IconButton btn = (FontAwesome.Sharp.IconButton)sender;
             btn.IconColor = Color.FromArgb(0, 164, 96);
             btn.BackColor = Color.White;
+        }
+
+        private void LvFiles_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+
         }
     }
 }

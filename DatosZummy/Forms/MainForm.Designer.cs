@@ -33,13 +33,15 @@ namespace DatosZummy
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             pnlTop = new Panel();
-            btnCloseConnection = new IconButton();
-            btnStartConnection = new IconButton();
+            btnDisconnect = new IconButton();
+            btnConnect = new IconButton();
             imgZummy = new PictureBox();
             pnlShadowTop = new Panel();
             pnlMain = new Panel();
             shadowMainForm = new Guna.UI2.WinForms.Guna2ShadowForm(components);
             elipseMainForm = new Guna.UI2.WinForms.Guna2Elipse(components);
+            elpBtnConnect = new Guna.UI2.WinForms.Guna2Elipse(components);
+            elpBtnDisconnect = new Guna.UI2.WinForms.Guna2Elipse(components);
             pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgZummy).BeginInit();
             SuspendLayout();
@@ -47,8 +49,8 @@ namespace DatosZummy
             // pnlTop
             // 
             pnlTop.BackColor = Color.FromArgb(228, 31, 39);
-            pnlTop.Controls.Add(btnCloseConnection);
-            pnlTop.Controls.Add(btnStartConnection);
+            pnlTop.Controls.Add(btnDisconnect);
+            pnlTop.Controls.Add(btnConnect);
             pnlTop.Controls.Add(imgZummy);
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
@@ -56,40 +58,51 @@ namespace DatosZummy
             pnlTop.Size = new Size(1006, 98);
             pnlTop.TabIndex = 0;
             // 
-            // btnCloseConnection
+            // btnDisconnect
             // 
-            btnCloseConnection.FlatAppearance.BorderSize = 0;
-            btnCloseConnection.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCloseConnection.ForeColor = Color.Red;
-            btnCloseConnection.IconChar = IconChar.PowerOff;
-            btnCloseConnection.IconColor = Color.Red;
-            btnCloseConnection.IconFont = IconFont.Auto;
-            btnCloseConnection.IconSize = 27;
-            btnCloseConnection.Location = new Point(865, 29);
-            btnCloseConnection.Name = "btnCloseConnection";
-            btnCloseConnection.Size = new Size(129, 35);
-            btnCloseConnection.TabIndex = 3;
-            btnCloseConnection.Text = "Salir";
-            btnCloseConnection.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCloseConnection.UseVisualStyleBackColor = true;
-            btnCloseConnection.Visible = false;
+            btnDisconnect.BackColor = Color.White;
+            btnDisconnect.FlatAppearance.BorderSize = 0;
+            btnDisconnect.FlatStyle = FlatStyle.Flat;
+            btnDisconnect.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDisconnect.ForeColor = Color.Red;
+            btnDisconnect.IconChar = IconChar.PowerOff;
+            btnDisconnect.IconColor = Color.Red;
+            btnDisconnect.IconFont = IconFont.Auto;
+            btnDisconnect.IconSize = 27;
+            btnDisconnect.Location = new Point(865, 30);
+            btnDisconnect.Name = "btnDisconnect";
+            btnDisconnect.Size = new Size(129, 35);
+            btnDisconnect.TabIndex = 3;
+            btnDisconnect.Text = "Salir";
+            btnDisconnect.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDisconnect.UseVisualStyleBackColor = false;
+            btnDisconnect.Visible = false;
+            btnDisconnect.MouseEnter += BtnConnectAndDisconect_MouseEnter;
+            btnDisconnect.MouseLeave += BtnConnectAndDisconnect_MouseLeave;
+            btnDisconnect.MouseHover += BtnConnectAndDisconect_MouseEnter;
             // 
-            // btnStartConnection
+            // btnConnect
             // 
-            btnStartConnection.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnStartConnection.ForeColor = Color.FromArgb(0, 164, 66);
-            btnStartConnection.IconChar = IconChar.TowerBroadcast;
-            btnStartConnection.IconColor = Color.FromArgb(0, 164, 66);
-            btnStartConnection.IconFont = IconFont.Auto;
-            btnStartConnection.IconSize = 27;
-            btnStartConnection.Location = new Point(865, 30);
-            btnStartConnection.Name = "btnStartConnection";
-            btnStartConnection.Size = new Size(129, 35);
-            btnStartConnection.TabIndex = 2;
-            btnStartConnection.Text = "Conectar";
-            btnStartConnection.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnStartConnection.UseVisualStyleBackColor = true;
-            btnStartConnection.Click += BtnStartConnection_Click;
+            btnConnect.BackColor = Color.White;
+            btnConnect.FlatAppearance.BorderSize = 0;
+            btnConnect.FlatStyle = FlatStyle.Flat;
+            btnConnect.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnConnect.ForeColor = Color.FromArgb(0, 164, 66);
+            btnConnect.IconChar = IconChar.TowerBroadcast;
+            btnConnect.IconColor = Color.FromArgb(0, 164, 66);
+            btnConnect.IconFont = IconFont.Auto;
+            btnConnect.IconSize = 27;
+            btnConnect.Location = new Point(865, 30);
+            btnConnect.Name = "btnConnect";
+            btnConnect.Size = new Size(129, 35);
+            btnConnect.TabIndex = 2;
+            btnConnect.Text = "Conectar";
+            btnConnect.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnConnect.UseVisualStyleBackColor = false;
+            btnConnect.Click += BtnStartConnection_Click;
+            btnConnect.MouseEnter += BtnConnectAndDisconect_MouseEnter;
+            btnConnect.MouseLeave += BtnConnectAndDisconnect_MouseLeave;
+            btnConnect.MouseHover += BtnConnectAndDisconect_MouseEnter;
             // 
             // imgZummy
             // 
@@ -128,6 +141,14 @@ namespace DatosZummy
             // 
             elipseMainForm.TargetControl = this;
             // 
+            // elpBtnConnect
+            // 
+            elpBtnConnect.TargetControl = btnConnect;
+            // 
+            // elpBtnDisconnect
+            // 
+            elpBtnDisconnect.TargetControl = btnDisconnect;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -151,9 +172,11 @@ namespace DatosZummy
         private PictureBox imgZummy;
         private Panel pnlShadowTop;
         private Panel pnlMain;
-        private IconButton btnStartConnection;
-        private IconButton btnCloseConnection;
+        private IconButton btnConnect;
+        private IconButton btnDisconnect;
         private Guna.UI2.WinForms.Guna2ShadowForm shadowMainForm;
         private Guna.UI2.WinForms.Guna2Elipse elipseMainForm;
+        private Guna.UI2.WinForms.Guna2Elipse elpBtnConnect;
+        private Guna.UI2.WinForms.Guna2Elipse elpBtnDisconnect;
     }
 }
