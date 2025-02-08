@@ -7,7 +7,7 @@ namespace DatosZummy.Forms
     {
         private ZummyData data = new();
         private readonly string initialPath = "/";
-        private string currentPath;
+        private FtpListItem currentItem = new();
         private Stack<string> backStackPath = new Stack<string>();
         private Stack<string> forwardStackPath = new Stack<string>();
 
@@ -22,17 +22,19 @@ namespace DatosZummy.Forms
             btnForward.Enabled = false;
             txtPath.Text = initialPath;
             txtPath.Enabled = false;
+            currentItem.FullName = initialPath;
         }
         private async void LvFiles_MouseDoubleClick(object sender, EventArgs e)
         {
             if (lvFiles.SelectedItems[0].ImageIndex == 0)
             {
-                backStackPath.Push(initialPath);
-                currentPath = initialPath + lvFiles.SelectedItems[0].Text;
+                backStackPath.Push(currentItem.FullName);
+                currentItem = (FtpListItem)lvFiles.SelectedItems[0].Tag;
                 forwardStackPath.Clear();
-                await LoadFilesAndDirectories(currentPath);
+                await LoadFilesAndDirectories(currentItem.FullName);
                 EnableNavegationBottons();
-                txtPath.Text = currentPath;
+                txtPath.Text = "";
+                txtPath.Text = currentItem.FullName;
             }
         }
         public async Task LoadFilesAndDirectories(string path)
@@ -41,16 +43,23 @@ namespace DatosZummy.Forms
             try
             {
                 List<FtpListItem> filesAndDirectories = new List<FtpListItem>(await data.GetListingAsync(path));
+
                 foreach (var item in filesAndDirectories)
                 {
+                    ListViewItem itemLv = new ListViewItem(item.Name);
+
                     if (item.Type == FtpObjectType.Directory)
                     {
-                        lvFiles.Items.Add("directory", item.Name, 0);
+                        itemLv.ImageIndex = 0;
+                        itemLv.Tag = item;
                     }
                     else
                     {
-                        lvFiles.Items.Add("file", item.Name, 1);
+                        itemLv.ImageIndex = GetImageIndexForExtension(Path.GetExtension(item.Name));
+                        itemLv.Tag = item;
                     }
+
+                    lvFiles.Items.Add(itemLv);
                 }
             }
             catch (Exception)
@@ -59,26 +68,42 @@ namespace DatosZummy.Forms
                 "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private async void btnBack_Click(object sender, EventArgs e)
+        private int GetImageIndexForExtension(string extension)
+        {
+            switch (extension)
+            {
+                case ".csv":
+                    return 3;
+                case ".xlsx":
+                    return 2;
+                case ".docx":
+                    return 4;
+                default:
+                    return 0;
+            }
+        }
+        private async void BtnBack_Click(object sender, EventArgs e)
         {
             if (backStackPath.Count > 0)
             {
-                forwardStackPath.Push(currentPath);
-                currentPath = backStackPath.Pop();
-                await LoadFilesAndDirectories(currentPath);
+                forwardStackPath.Push(currentItem.FullName);
+                currentItem.FullName = backStackPath.Pop();
+                await LoadFilesAndDirectories(currentItem.FullName);
                 EnableNavegationBottons();
-                txtPath.Text = currentPath;
+                txtPath.Text = "";
+                txtPath.Text = currentItem.FullName;
             }
         }
-        private async void btnForward_Click(object sender, EventArgs e)
+        private async void BtnForward_Click(object sender, EventArgs e)
         {
             if (forwardStackPath.Count > 0)
             {
-                backStackPath.Push(currentPath);
-                currentPath = forwardStackPath.Pop();
-                await LoadFilesAndDirectories(currentPath);
+                backStackPath.Push(currentItem.FullName);
+                currentItem.FullName = forwardStackPath.Pop();
+                await LoadFilesAndDirectories(currentItem.FullName);
                 EnableNavegationBottons();
-                txtPath.Text = currentPath;
+                txtPath.Text = "";
+                txtPath.Text = currentItem.FullName;
             }
         }
         private void EnableNavegationBottons()

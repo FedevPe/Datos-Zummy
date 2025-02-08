@@ -69,8 +69,9 @@
             iconList.TransparentColor = Color.Transparent;
             iconList.Images.SetKeyName(0, "carpeta.png");
             iconList.Images.SetKeyName(1, "archivo-csv.png");
-            iconList.Images.SetKeyName(2, "");
-            iconList.Images.SetKeyName(3, "");
+            iconList.Images.SetKeyName(2, "archivo-xlsx.png");
+            iconList.Images.SetKeyName(3, "csvIcon.png");
+            iconList.Images.SetKeyName(4, "doc.png");
             // 
             // lvFiles
             // 
@@ -126,7 +127,7 @@
             btnBack.Size = new Size(35, 30);
             btnBack.TabIndex = 4;
             btnBack.UseVisualStyleBackColor = false;
-            btnBack.Click += btnBack_Click;
+            btnBack.Click += BtnBack_Click;
             btnBack.MouseEnter += BtnBackAndGo_MouseEnter;
             btnBack.MouseLeave += BtnBackAndGo_MouseLeave;
             btnBack.MouseHover += BtnBackAndGo_MouseHover;
@@ -145,7 +146,7 @@
             btnForward.Size = new Size(35, 30);
             btnForward.TabIndex = 5;
             btnForward.UseVisualStyleBackColor = false;
-            btnForward.Click += btnForward_Click;
+            btnForward.Click += BtnForward_Click;
             btnForward.MouseEnter += BtnBackAndGo_MouseEnter;
             btnForward.MouseLeave += BtnBackAndGo_MouseLeave;
             btnForward.MouseHover += BtnBackAndGo_MouseHover;
