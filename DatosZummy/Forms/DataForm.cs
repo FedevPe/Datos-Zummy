@@ -10,7 +10,7 @@ namespace DatosZummy.Forms
         private FtpListItem currentItem = new();
         private Stack<string> backStackPath = new Stack<string>();
         private Stack<string> forwardStackPath = new Stack<string>();
-
+        private List<string> itemsSelectedPath = new List<string>();
         public DataForm()
         {
             InitializeComponent();
@@ -44,21 +44,22 @@ namespace DatosZummy.Forms
             {
                 List<FtpListItem> filesAndDirectories = new List<FtpListItem>(await data.GetListingAsync(path));
 
-                foreach (var item in filesAndDirectories)
+                foreach (var item in filesAndDirectories
+                    .Where(i => i.Type == FtpObjectType.Directory)
+                    .OrderBy(i => i.Name))
                 {
                     ListViewItem itemLv = new ListViewItem(item.Name);
-
-                    if (item.Type == FtpObjectType.Directory)
-                    {
-                        itemLv.ImageIndex = 0;
-                        itemLv.Tag = item;
-                    }
-                    else
-                    {
-                        itemLv.ImageIndex = GetImageIndexForExtension(Path.GetExtension(item.Name));
-                        itemLv.Tag = item;
-                    }
-
+                    itemLv.ImageIndex = 0;
+                    itemLv.Tag = item;
+                    lvFiles.Items.Add(itemLv);
+                }
+                foreach (var item in filesAndDirectories
+                    .Where(i => i.Type == FtpObjectType.File)
+                    .OrderBy(i => i.Name))
+                {
+                    ListViewItem itemLv = new ListViewItem(item.Name);
+                    itemLv.ImageIndex = GetImageIndexForExtension(Path.GetExtension(item.FullName));
+                    itemLv.Tag = item;
                     lvFiles.Items.Add(itemLv);
                 }
             }
@@ -72,14 +73,14 @@ namespace DatosZummy.Forms
         {
             switch (extension)
             {
-                case ".csv":
-                    return 3;
                 case ".xlsx":
+                    return 1;
+                case ".csv":
                     return 2;
                 case ".docx":
-                    return 4;
+                    return 3;
                 default:
-                    return 0;
+                    return 4;
             }
         }
         private async void BtnBack_Click(object sender, EventArgs e)
@@ -115,24 +116,71 @@ namespace DatosZummy.Forms
         {
             FontAwesome.Sharp.IconButton btn = (FontAwesome.Sharp.IconButton)sender;
             btn.IconColor = Color.FromArgb(0, 164, 96);
+            btn.ForeColor = Color.FromArgb(0, 164, 96);
             btn.BackColor = Color.White;
         }
         private void BtnBackAndGo_MouseLeave(object sender, EventArgs e)
         {
             FontAwesome.Sharp.IconButton btn = (FontAwesome.Sharp.IconButton)sender;
             btn.IconColor = Color.White;
+            btn.ForeColor = Color.White;
             btn.BackColor = Color.FromArgb(0, 164, 96);
         }
         private void BtnBackAndGo_MouseHover(object sender, EventArgs e)
         {
             FontAwesome.Sharp.IconButton btn = (FontAwesome.Sharp.IconButton)sender;
             btn.IconColor = Color.FromArgb(0, 164, 96);
+            btn.ForeColor = Color.FromArgb(0, 164, 96);
             btn.BackColor = Color.White;
         }
 
         private void LvFiles_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-
+            if (lvFiles.SelectedItems.Count > 0)
+            {
+                itemsSelectedPath.Clear();
+                foreach (ListViewItem item in lvFiles.SelectedItems)
+                {
+                    FtpListItem itemFtp = (FtpListItem)item.Tag;
+                    if (itemFtp.Type == FtpObjectType.File)
+                    {
+                        itemsSelectedPath.Add(itemFtp.FullName);
+                    }
+                }
+            }
         }
+        private void btnFolderDialog_Click(object sender, EventArgs e)
+        {
+            DialogResult result = fdPathLocalDownload.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                txtPathDownload.Text = fdPathLocalDownload.SelectedPath;
+            }
+        }
+        //private void LvFiles_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    int count = 0;
+        //    try
+        //    {
+        //        foreach (FtpListItem item in lvFiles.SelectedItems)
+        //        {
+        //            if(item.Type == FtpObjectType.File)
+        //            {
+        //                count++;
+        //                selectedItem = item;
+        //            }
+        //        }
+        //        if (count == lvFiles.SelectedItems.Count)
+        //        {
+        //            //Descargar los archivos, pasan
+        //        }
+
+        //    }
+        //    catch (Exception)
+        //    {
+        //        MessageBox.Show($"Ha ocurrido un problema al intentar descargar el archivo. ({selectedItem.Name})",
+        //        "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
     }
 }

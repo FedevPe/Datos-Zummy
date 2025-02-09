@@ -3,18 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|c:\\users\\administrador\\source\\repos\\datos-zummy\\datoszummy\\forms\\dataform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\forms\\dataform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|c:\\users\\administrador\\source\\repos\\datos-zummy\\datoszummy\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|c:\\users\\administrador\\source\\repos\\datos-zummy\\datoszummy\\forms\\dataform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\forms\\dataform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|c:\\users\\administrador\\source\\repos\\datos-zummy\\datoszummy\\classes\\zummydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\classes\\zummydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,8 +11,28 @@
       "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\classes\\serverconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|c:\\users\\administrador\\source\\repos\\datos-zummy\\datoszummy\\forms\\dataform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\forms\\dataform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|c:\\users\\administrador\\source\\repos\\datos-zummy\\datoszummy\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\datoszummy\\forms\\dataform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\forms\\dataform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|c:\\users\\administrador\\source\\repos\\datos-zummy\\datoszummy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|c:\\users\\administrador\\source\\repos\\datos-zummy\\datoszummy\\forms\\dataform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\forms\\dataform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\datoszummy\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{02A987E6-5780-4B9B-B187-5FBA05EF7DFB}|DatosZummy\\DatosZummy.csproj|solutionrelative:datoszummy\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -44,10 +52,11 @@
               "RelativeDocumentMoniker": "DatosZummy\\Program.cs",
               "ToolTip": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Program.cs",
               "RelativeToolTip": "DatosZummy\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-06T00:18:56.241Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -59,7 +68,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
+              "Title": "DataForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Forms\\DataForm.Designer.cs",
+              "RelativeDocumentMoniker": "DatosZummy\\Forms\\DataForm.Designer.cs",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Forms\\DataForm.Designer.cs",
+              "RelativeToolTip": "DatosZummy\\Forms\\DataForm.Designer.cs",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAawLYAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T09:59:01.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "DataForm.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Forms\\DataForm.cs",
               "RelativeDocumentMoniker": "DatosZummy\\Forms\\DataForm.cs",
@@ -71,54 +93,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "MainForm.cs",
               "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Forms\\MainForm.cs",
               "RelativeDocumentMoniker": "DatosZummy\\Forms\\MainForm.cs",
               "ToolTip": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Forms\\MainForm.cs",
               "RelativeToolTip": "DatosZummy\\Forms\\MainForm.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAUwEYAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACIAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-06T15:06:02.805Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "DataForm.cs",
               "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Forms\\DataForm.cs",
               "RelativeDocumentMoniker": "DatosZummy\\Forms\\DataForm.cs",
               "ToolTip": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Forms\\DataForm.cs",
               "RelativeToolTip": "DatosZummy\\Forms\\DataForm.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAgwGUAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAUwA8AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-06T01:00:37.944Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "ZummyData.cs",
               "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Classes\\ZummyData.cs",
               "RelativeDocumentMoniker": "DatosZummy\\Classes\\ZummyData.cs",
               "ToolTip": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Classes\\ZummyData.cs",
               "RelativeToolTip": "DatosZummy\\Classes\\ZummyData.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAkwDEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-06T01:00:23.359Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "ServerConnection.cs",
               "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Classes\\ServerConnection.cs",
               "RelativeDocumentMoniker": "DatosZummy\\Classes\\ServerConnection.cs",
               "ToolTip": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Classes\\ServerConnection.cs",
               "RelativeToolTip": "DatosZummy\\Classes\\ServerConnection.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAA0wAMAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAwwAkAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T00:12:43.864Z"
+              "WhenOpened": "2025-02-06T00:12:43.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainForm.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Forms\\MainForm.cs",
+              "RelativeDocumentMoniker": "DatosZummy\\Forms\\MainForm.cs",
+              "ToolTip": "C:\\Users\\Administrador\\source\\repos\\Datos-Zummy\\DatosZummy\\Forms\\MainForm.cs [Dise\u00F1o]",
+              "RelativeToolTip": "DatosZummy\\Forms\\MainForm.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T12:03:32.126Z",
+              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         },

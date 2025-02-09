@@ -4,12 +4,11 @@ namespace DatosZummy.Classes
 {
     internal class ZummyData
     {
-        private ServerConnection connection;
+        private ServerConnection connection = new();
 
         public async Task<List<FtpListItem>> GetListingAsync(string path)
         {
             List<FtpListItem> ftpFiles = new List<FtpListItem>();
-            connection = new ServerConnection();
 
             try
             {
@@ -31,24 +30,12 @@ namespace DatosZummy.Classes
                 connection.DisconnectServerFTP();
             }
         }
-        public async Task<List<FtpListItem>> GetDirectoriesAsync(string path)
+        public async Task DownloadFilesFTP(string pathLocal, List<string> filePathDownload)
         {
-            List<FtpListItem> ftpDirectories = new List<FtpListItem>();
-            connection = new ServerConnection();
-
             try
             {
                 await connection.ConnectAsync();
-
-                foreach (FtpListItem item in await connection.FtpClient.GetListing(path, FtpListOption.Recursive))
-                {
-                    if (item.Type == FtpObjectType.Directory)
-                    {
-                        ftpDirectories.Add(item);
-                    }
-                }
-
-                return ftpDirectories;
+                await connection.FtpClient.DownloadFiles(pathLocal, filePathDownload);
             }
             catch (Exception)
             {
@@ -58,6 +45,7 @@ namespace DatosZummy.Classes
             {
                 connection.DisconnectServerFTP();
             }
+
         }
     }
 }
