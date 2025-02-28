@@ -159,6 +159,7 @@
             btnDownload.Text = "Descargar";
             btnDownload.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDownload.UseVisualStyleBackColor = false;
+            btnDownload.Click += BtnDownload_Click;
             btnDownload.MouseEnter += BtnBackAndGo_MouseEnter;
             btnDownload.MouseLeave += BtnBackAndGo_MouseLeave;
             btnDownload.MouseHover += BtnBackAndGo_MouseHover;

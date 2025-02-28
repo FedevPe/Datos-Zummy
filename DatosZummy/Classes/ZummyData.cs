@@ -13,37 +13,32 @@ namespace DatosZummy.Classes
             try
             {
                 await connection.ConnectAsync();
-
                 foreach (FtpListItem item in await connection.FtpClient.GetListing(path))
                 {                    
                     ftpFiles.Add(item);
                 }
-
+                
                 return ftpFiles;
             }
             catch (Exception)
             {
+                connection.DisconnectServerFTP();
                 throw;
             }
-            finally
-            {
-                connection.DisconnectServerFTP();
-            }
         }
-        public async Task DownloadFilesFTP(string pathLocal, List<string> filePathDownload)
+        public async Task DownloadFilesFTP(string localPath, List<string> remotePathItems)
         {
             try
             {
-                await connection.ConnectAsync();
-                await connection.FtpClient.DownloadFiles(pathLocal, filePathDownload);
+                if (connection.FtpClient.IsConnected) 
+                {                
+                    await connection.FtpClient.DownloadFiles(localPath, remotePathItems, FtpLocalExists.Overwrite);
+                }
             }
             catch (Exception)
             {
-                throw;
-            }
-            finally
-            {
                 connection.DisconnectServerFTP();
+                throw;
             }
 
         }

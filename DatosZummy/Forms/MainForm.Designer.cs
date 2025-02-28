@@ -77,6 +77,7 @@ namespace DatosZummy
             btnDisconnect.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDisconnect.UseVisualStyleBackColor = false;
             btnDisconnect.Visible = false;
+            btnDisconnect.Click += BtnDisconnect_Click;
             btnDisconnect.MouseEnter += BtnConnectAndDisconect_MouseEnter;
             btnDisconnect.MouseLeave += BtnConnectAndDisconnect_MouseLeave;
             btnDisconnect.MouseHover += BtnConnectAndDisconect_MouseEnter;

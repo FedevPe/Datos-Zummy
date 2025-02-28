@@ -63,8 +63,9 @@ namespace DatosZummy.Forms
                     lvFiles.Items.Add(itemLv);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 MessageBox.Show("Ha ocurrido un problema al intentar cargar los archivos.",
                 "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -157,30 +158,36 @@ namespace DatosZummy.Forms
                 txtPathDownload.Text = fdPathLocalDownload.SelectedPath;
             }
         }
-        //private void LvFiles_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    int count = 0;
-        //    try
-        //    {
-        //        foreach (FtpListItem item in lvFiles.SelectedItems)
-        //        {
-        //            if(item.Type == FtpObjectType.File)
-        //            {
-        //                count++;
-        //                selectedItem = item;
-        //            }
-        //        }
-        //        if (count == lvFiles.SelectedItems.Count)
-        //        {
-        //            //Descargar los archivos, pasan
-        //        }
 
-        //    }
-        //    catch (Exception)
-        //    {
-        //        MessageBox.Show($"Ha ocurrido un problema al intentar descargar el archivo. ({selectedItem.Name})",
-        //        "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
+        private async void BtnDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (itemsSelectedPath.Count == 0)
+                {
+                    MessageBox.Show("No se ha seleccionado ningún archivo para descargar.",
+                    "Descarga de archivos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else if (string.IsNullOrEmpty(txtPathDownload.Text))
+                {
+                    MessageBox.Show("No se ha seleccionado una ruta de destino para la descarga.",
+                    "Descarga de archivos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    await data.DownloadFilesFTP(txtPathDownload.Text, itemsSelectedPath);
+                    MessageBox.Show("Descarga completada con éxito.", "Descarga de archivos", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ha ocurrido un problema al intentar descargar los archivos.",
+                "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

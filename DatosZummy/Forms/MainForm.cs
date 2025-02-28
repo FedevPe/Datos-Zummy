@@ -15,13 +15,6 @@ namespace DatosZummy
 
         private async void BtnStartConnection_Click(object sender, EventArgs e)
         {
-            //OpenForm(new DataForm());
-            //btnStartConnection.Enabled = false;
-            //btnStartConnection.Visible = false;
-            //btnCloseConnection.Enabled = true;
-            //btnCloseConnection.Visible = true;
-
-            
             if (await connection.ConnectAsync())
             {
                 OpenForm(new DataForm());
@@ -32,7 +25,7 @@ namespace DatosZummy
             }
             else
             {
-                MessageBox.Show(connection.Ex.Message);
+                MessageBox.Show(connection.Ex?.Message ?? "Error desconocido al intentar conectarse al servidor.");
                 //MessageBox.Show("Ha ocurrido un problema al intentar establecer la conexión con el servidor.",
                 //    "Error Connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -41,7 +34,7 @@ namespace DatosZummy
         {
             FontAwesome.Sharp.IconButton btn = (FontAwesome.Sharp.IconButton)sender;
 
-            if(btn.Text == "Conectar")
+            if (btn.Text == "Conectar")
             {
                 btn.IconColor = Color.White;
                 btn.BackColor = Color.FromArgb(0, 164, 66);
@@ -80,6 +73,11 @@ namespace DatosZummy
             form.Show();
             form.BringToFront();
             form.Focus();
+        }
+
+        private void BtnDisconnect_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

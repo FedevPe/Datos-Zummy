@@ -6,10 +6,10 @@ namespace DatosZummy.Classes
     internal class ServerConnection
     {
         public AsyncFtpClient FtpClient { get; set; } = new AsyncFtpClient();
-        public Exception Ex { get; set; }
+        public Exception Ex { get; set; } = new();
+
         public async Task<bool> ConnectAsync()
         {
-            bool x = false;
             try
             {
                 var token = new CancellationToken();
@@ -22,15 +22,14 @@ namespace DatosZummy.Classes
 
                 if (FtpClient.IsConnected)
                 {
-                    x = true;
+                    return true;
                 }
-
-                return x;
+                return false;
             }
             catch (Exception ex)
             {
                 Ex = ex;
-                return x;
+                return false;
             }
         }
         public void DisconnectServerFTP()
